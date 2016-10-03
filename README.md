@@ -4,7 +4,7 @@
 
 <h3>Capacities</h3>
 <ul>
-  <li>null</li>
+  <li>null (i'm just trying the matrix and vectors :3)</li>
 </ul>
 
 <h3>project</h3>
