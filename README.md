@@ -14,7 +14,7 @@
 
 <h3>language & libs</h3>
 <ul>
-  <li>Ubuntu / Debian</li>
-  <li>CPP</li>
-  <li>Eigen</li>
+  <li>OS : Ubuntu / Debian</li>
+  <li>language : CPP</li>
+  <li>lib: Eigen</li>
 </ul>
