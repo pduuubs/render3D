@@ -5,6 +5,7 @@ DEBUG = no
 OBJ = main.o
 FILES = main.cpp
 HEADERS =
+LIBS = -I ./libs/eigen
 
 ifeq ($(DEBUG), yes)
 	CFLAGS = -g -W -Wall
@@ -19,7 +20,7 @@ bin:
 	mkdir -p bin
 
 main.o : ./src/${FILES}
-	${CC} -c ./src/${FILES} -o ./bin/${OBJ}
+	${CC} ${LIBS} -c ./src/${FILES} -o ./bin/${OBJ}
 
 clean:
 		rm -rf ./bin/*.o
