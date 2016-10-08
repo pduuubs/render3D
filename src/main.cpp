@@ -41,7 +41,7 @@ int map[mapWidth][mapHeight] = {
 using namespace QuickCG;
 using namespace std;
 
-int main(int argc, char const *argv[]) {
+int main() {
 	double posX = 22, posY = 11; //coord du joueur
 	double dirX = -1, dirY = 0;  //vecteurs cam et direction
 	double planeX = 0, planeY = 0.66; //fov
