@@ -1,0 +1,7 @@
+	LOG DES BUILDS
+
+alpha 0.0.1 : 9/10/2016 => 00h51
+	- gros bug dans la facon de faire le rendu
+	- bug dans le DDA
+	- pas de possibilités d'arret (problematique nan?)
+	+ framerate inf (normal quoi)
