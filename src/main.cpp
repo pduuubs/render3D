@@ -6,11 +6,12 @@
 #include "quickcg.h"
 //bibliothequje graph permettant de faire du pixel a pixel en gros
 
-#define WIDTH 24	//taille de **map
-#define HEIGHT 24
-
+#define mapWidth 24	//taille de **map
+#define mapHeight 24
+#define WIDTH 800
+#define HEIGHT 600
 //une map random trouvée sur internet, elle collera pour le moteur
-int map[WIDTH][HEIGHT] = {
+int map[mapWidth][mapHeight] = {
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -48,7 +49,7 @@ int main(int argc, char const *argv[]) {
 	double time = 0;
 	double oldTime = 0;
 
-	screen(600, 400, 0, "render3D - pdubs");
+	screen(WIDTH, HEIGHT, 0, "render3D - pdubs");
 
 	while (!done()) { //boucle de QuickCG, cool et usefull
 		for(int x = 0; x < w; x++){
@@ -136,6 +137,8 @@ int main(int argc, char const *argv[]) {
 			time = getTicks();
 			double frameTime = (time - oldTime) / 1000.0; //temps que la frame a mis pour faire le rendu
 			print(1.0 / frameTime); //afficher
+			printString("pdubs", WIDTH - 5 * 8, HEIGHT - 8 * 2 - 4, RGB_White);
+			printString("alpha 0.0.2 - buggy", WIDTH - 19 * 8, HEIGHT - 8, RGB_White);
 			redraw();
 			cls();
 
@@ -145,12 +148,12 @@ int main(int argc, char const *argv[]) {
 
 			readKeys();
 			//move forward if no wall in front of you
-			if (keyDown(SDLK_UP)){
+			if (keyDown(SDLK_z)){
 				if(map[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
 				if(map[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
 			}
 			//move backwards if no wall behind you
-			if (keyDown(SDLK_DOWN)){
+			if (keyDown(SDLK_s)){
 				if(map[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
 				if(map[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
 			}
@@ -173,6 +176,10 @@ int main(int argc, char const *argv[]) {
 				double oldPlaneX = planeX;
 				planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
 				planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+			}
+
+			if(keyDown(SDLK_ESCAPE)){
+				return 0;
 			}
 		}
 	}

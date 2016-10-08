@@ -1,7 +1,14 @@
 	LOG DES BUILDS
 
 alpha 0.0.1 : 9/10/2016 => 00h51
-	- gros bug dans la facon de faire le rendu
-	- bug dans le DDA
-	- pas de possibilités d'arret (problematique nan?)
+	+ gros bug dans la facon de faire le rendu
+	+ bug dans le DDA
+	+ pas de possibilités d'arret (problematique nan?)
 	+ framerate inf (normal quoi)
+
+alpha 0.0.2 : 9/10/2016 => 01h10
+	+ ajout d'une touche pour echap
+	+ ces bandes de couleurs a la place d'un rendu normal
+		ca donne un style, malgre que ca donne mal a 
+		la tete. En vrai ca ferait un jeu mega dur!
+	+ ajout des texts trop cools
