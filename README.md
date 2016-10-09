@@ -2,19 +2,18 @@
 
 <h4>A 3D render method created from scratch.</h4>
 
-<h3>Capacities</h3>
+<h5>Goals :</h5>
 <ul>
-  <li>null (i'm just trying the matrix and vectors :3)</li>
+<li>For the moment, I'm just trying to create a Wolfenstein style game.</li>
+<ul>
+<li>I'm building the walls from a text file, no texture just colors</li>
+</ul>
 </ul>
 
-<h3>project</h3>
+<h5>Tools :</h5>
 <ul>
-  <li>render of 8 points in space</li>
-</ul>
-
-<h3>language & libs</h3>
-<ul>
-  <li>OS : Ubuntu / Debian</li>
-  <li>language : CPP</li>
-  <li>lib: Eigen</li>
+<li>C++ (g++ on Ubuntu)</li>
+<li>SDL</li>
+<li>QuickCG</li>
+<li>Atom from Github</li>
 </ul>
