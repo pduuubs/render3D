@@ -51,8 +51,8 @@ int main() {
 
 	screen(WIDTH, HEIGHT, 0, "render3D - pdubs");
 
-	while (!done()) { //boucle de QuickCG, cool et usefull
-		for(int x = 0; x < w; x++){
+	while (true) { //boucle de QuickCG, cool et usefull
+		for(int x = 0; x < w	; x++){
 			double cameraX = 2 * x / double(w) - 1;
 			double rayPosX = posX;
 			double rayPosY = posY;
@@ -127,10 +127,10 @@ int main() {
 	      }
 
 	      if (side == 1) {
-					color = color / 2;
+					//color = color / 2;
 				}
-
 				verLine(x, drawStart, drawEnd, color);
+
 			} //fin du DDA
 
 			oldTime = time;
