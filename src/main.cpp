@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
 #include "quickcg.h" //biblio graphique
 
 #define mapWidth 24
@@ -49,17 +48,66 @@ double planeX = 0, planeY = 0.66;
 int running = 1;
 
 void render(double posX, double posY, double dirX, double dirY, double planeX, double planeY);
-void tick();
 
 int main(){
+		double time = 0; //time of current frame
+		double oldTime = 0; //time of previous frame
 
+		screen(WIDTH, HEIGHT, 0, "render3D - pdubs - " + VERSION);
 
-	screen(WIDTH, HEIGHT, 0, "render3D - pdubs - " + VERSION);
+		while(running)
+		{
 
-	while (running) {
 			render(posX, posY, dirX, dirY, planeX, planeY);
-			tick();
-	}
+			//timing for input and FPS counter
+			oldTime = time;
+			time = getTicks();
+			double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
+
+			print(1.0/frameTime);
+			//speed modifiers
+			double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
+			double rotSpeed = frameTime * 3.0; //the constant value is in radians/second
+			readKeys();
+			//move forward if no wall in front of you
+			if (keyDown(SDLK_UP))
+			{
+				if(map[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
+				if(map[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+			}
+			//move backwards if no wall behind you
+			if (keyDown(SDLK_DOWN))
+			{
+				if(map[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
+				if(map[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
+			}
+			//rotate to the right
+			if (keyDown(SDLK_RIGHT))
+			{
+				//both camera direction and camera plane must be rotated
+				double oldDirX = dirX;
+				dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+				dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+				double oldPlaneX = planeX;
+				planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+				planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+			}
+			//rotate to the left
+			if (keyDown(SDLK_LEFT))
+			{
+				//both camera direction and camera plane must be rotated
+				double oldDirX = dirX;
+				dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+				dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+				double oldPlaneX = planeX;
+				planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+				planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+			}
+
+			if(keyDown(SDLK_ESCAPE)){
+				running = 0;
+			}
+		}
 }
 
 void render(double posX, double posY, double dirX, double dirY, double planeX, double planeY){
@@ -147,52 +195,4 @@ void render(double posX, double posY, double dirX, double dirY, double planeX, d
 
 	redraw();
 	cls();
-}
-
-void tick(){
-	double time = 0;
-	double oldTime = 0;
-
-	oldTime = time;
-	time = getTicks();
-	double frameTime = (time - oldTime) / 1000.0;
-
-	double moveSpeed = frameTime * 5.0;
-	double rotSpeed = frameTime * 3.0;
-
-
-	readKeys();
-
-	if (keyDown(SDLK_z) || keyDown(SDLK_UP)){
-		if(map[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-		if(map[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-	}
-
-	if (keyDown(SDLK_s) || keyDown(SDLK_DOWN)){
-		if(map[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-		if(map[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-	}
-
-
-	if (keyDown(SDLK_RIGHT) || keyDown(SDLK_d)){
-		double oldDirX = dirX;
-		dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-		dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-		planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-	}
-
-	if (keyDown(SDLK_LEFT) || keyDown(SDLK_q)){
-		double oldDirX = dirX;
-		dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-		dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-		planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-	}
-
-	if(keyDown(SDLK_ESCAPE)){
-		running = 0;
-	}
 }
