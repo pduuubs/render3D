@@ -30,7 +30,7 @@ struct ColorRGB
   int g;
   int b;
 
-  ColorRGB(Uint8 r, Uint8 g, Uint8 b);
+  ColorRGB(int r, int g, int b);
   ColorRGB(const ColorRGB8bit& color);
   ColorRGB();
 };
@@ -46,11 +46,11 @@ bool operator!=(const ColorRGB& color, const ColorRGB& color2);
 //a color with 3 components: r, g and b
 struct ColorRGB8bit
 {
-  Uint8 r;
-  Uint8 g;
-  Uint8 b;
+  int r;
+  int g;
+  int b;
 
-  ColorRGB8bit(Uint8 r, Uint8 g, Uint8 b);
+  ColorRGB8bit(int r, int g, int b);
   ColorRGB8bit(const ColorRGB& color);
   ColorRGB8bit();
 };

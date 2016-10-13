@@ -13,7 +13,7 @@ int w, h;   //Screen WIDTH and HEIGHT
 
 
 SDL_Surface* screen;
-Uint8* inkeys;
+int* inkeys;
 SDL_Event event = {0};
 std::map<int, bool> keypressed;
 //////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ void cleanScreen()
 ////////////////////////////////////////////////////////////////////////////////
 //COLOR STRUCTS/////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-ColorRGB::ColorRGB(Uint8 r, Uint8 g, Uint8 b)
+ColorRGB::ColorRGB(int r, int g, int b)
 {
         this->r = r;
         this->g = g;
@@ -96,7 +96,7 @@ ColorRGB::ColorRGB()
         this->g = 0;
         this->b = 0;
 }
-ColorRGB8bit::ColorRGB8bit(Uint8 r, Uint8 g, Uint8 b)
+ColorRGB8bit::ColorRGB8bit(int r, int g, int b)
 {
         this->r = r;
         this->g = g;
