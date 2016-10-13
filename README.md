@@ -2,6 +2,8 @@
 
 <h4>A 3D render method created from scratch.</h4>
 
+You can see how I progress in the build/log file ! 
+
 <h5>Goals :</h5>
 <ul>
 <li>For the moment, I'm just trying to create a Wolfenstein style game.</li>
