@@ -5,7 +5,7 @@
 
 #include "quickcg.h"
 using namespace QuickCG;
-
+using namespace std;
 /*
    g++ *.cpp -lSDL -O3 -W -Wall -ansi -pedantic
    g++ *.cpp -lSDL
@@ -21,16 +21,16 @@ using namespace QuickCG;
 
 int worldMap[mapWidth][mapHeight]=
 {
-{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7},
-{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-{4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-{4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-{4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-{4,0,4,0,0,0,0,5,5,5,5,5,5,5,5,5,7,7,0,7,7,7,7,7},
-{4,0,5,0,0,0,0,5,0,5,0,5,0,5,0,5,7,0,0,0,7,7,7,1},
-{4,0,6,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
-{4,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,1},
-{4,0,8,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
+{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4},
+{4,1,2,3,4,5,6,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+{4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
 {4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,7,7,7,1},
 {4,0,0,0,0,0,0,5,5,5,5,0,5,5,5,5,7,7,7,7,7,7,7,1},
 {6,6,6,6,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
@@ -51,7 +51,8 @@ Uint32 buffer[screenHeight][screenWidth];
 
 int main()
 {
-        double posX = 22.0, posY = 11.5; //x and y start position
+        std::string version = "0.21";
+        double posX = 3.0, posY = 3.0; //x and y start position
         double dirX = -1.0, dirY = 0.0; //initial direction vector
         double planeX = 0.0, planeY = 0.66; //the 2d raycaster version of camera plane
 
@@ -61,7 +62,7 @@ int main()
         std::vector<Uint32> texture[8];
         for(int i = 0; i < 8; i++) texture[i].resize(texWidth * texHeight);
 
-        screen(screenWidth,screenHeight, 0, "Raycaster");
+        screen(screenWidth,screenHeight, 0, "GAME TITLE - v." + version);
 
         //generate some textures
         for(int x = 0; x < texWidth; x++)
@@ -197,7 +198,10 @@ int main()
                 oldTime = time;
                 time = getTicks();
                 double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
-                print(1.0 / frameTime); //FPS counter
+                print(int(1.0/frameTime)); //FPS counter
+                printString(" fps", 2 * 8,0);
+                printString("version : ", 7 * 8,0);
+                printString(version, 10 * 8 + 7 * 8,0);
                 redraw();
 
                 //speed modifiers
