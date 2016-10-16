@@ -2,13 +2,13 @@
 
 <h4>A 3D render method created from scratch.</h4>
 
-You can see how I progress in the build/log file ! 
-
 <h5>Goals :</h5>
 <ul>
 <li>For the moment, I'm just trying to create a Wolfenstein style game.</li>
 <ul>
-<li>I'm building the walls from a text file, no texture just colors</li>
+<li>I'm building the walls from a text file, no texture just colors : DONE</li>
+<li>Rendering generated textures : DONE</li>
+<li>Rendering textures from files : WORKING ON</li>
 </ul>
 </ul>
 
