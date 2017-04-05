@@ -1,4 +1,4 @@
-# render3D
+# raycaster
 
 <h4>A 3D render method created from scratch.</h4>
 
