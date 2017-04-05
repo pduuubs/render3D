@@ -1,6 +1,6 @@
 # raycaster
 
-<h4>A 3D render method created from scratch.</h4>
+<h4>/!\ CE MOTEUR DE RENDU N'EST QU'UN RAYCASTER. /!\</h4>
 
 <h5>Goals :</h5>
 <ul>
